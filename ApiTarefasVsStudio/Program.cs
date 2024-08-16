@@ -1,4 +1,14 @@
+using ApiTarefasVsStudio.DataBase;
+
+using Microsoft.EntityFrameworkCore;
+
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<TarefasContext>(options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30))));
 
 // Add services to the container.
 
